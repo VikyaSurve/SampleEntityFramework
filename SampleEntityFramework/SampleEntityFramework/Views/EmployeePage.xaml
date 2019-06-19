@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SampleEntityFramework.Views.EmployeePage">
+    <ContentPage.Content>
+        <StackLayout Spacing="10"
+                 Padding="20">
+
+            <Entry Text="{Binding EmployeeName , Mode=TwoWay}" Placeholder="Enter Name"/>
+            <Entry Text="{Binding EmployeeEmailAddress, Mode=TwoWay}" Placeholder="Email Address"/>
+
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Text="Save" TextColor="White" Grid.Column="0" x:Name="saveUpdateButton" BackgroundColor="Green" FontSize="22" Clicked="SaveUpdateButton_Clicked"/>
+                <Button Text="Clear"  TextColor="White"  Grid.Column="1" x:Name="clearButton" BackgroundColor="DarkGray" FontSize="22" Command="{Binding ClearCommand}" />
+                <Button Text="Sync" TextColor="White"  Grid.Column="2" BackgroundColor="Gray" FontSize="22"  Command="{Binding SyncCommand}" />
+            </Grid>
+            <ListView ItemsSource="{Binding Employees, Mode=TwoWay}" HasUnevenRows="True" ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Name" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="Email"/>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding  EmailAddress, Mode=TwoWay}" Font="Small"  TextColor="Gray" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
